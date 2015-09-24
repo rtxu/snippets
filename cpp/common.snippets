@@ -1,0 +1,33 @@
+
+snippet guard
+#ifndef $1
+#define $1
+
+$0
+
+#endif // $1
+endsnippet
+
+snippet ns
+namespace $1 {
+$0
+} // namespace $1
+endsnippet
+
+snippet cls
+class $1
+{
+public:
+	$2
+
+private:
+	$3
+};
+
+endsnippet
+
+snippet inc
+#include <$1>
+
+endsnippet
+
