@@ -1,0 +1,36 @@
+
+snippet actor
+type $1 struct {
+}
+
+func New$1(intervalInMs int) *$1 {
+	return &$1{
+		mQuit:   make(chan bool),
+		mTicker: time.NewTicker(time.Duration(intervalInMs) * time.Millisecond),
+	}
+}
+
+func (this *$1) Startup() {
+	go this.loop()
+}
+
+func (this *$1) Shutdown() {
+	this.mQuit <- true
+}
+
+func (this *$1) loop() {
+	for {
+		select {
+		case <-this.mQuit:
+			this.mTicker.Stop()
+			return
+		case <-this.mTicker.C:
+			this.workflow()
+		}
+	}
+}
+
+func (this *$1) workflow() {
+}
+endsnippet
+
