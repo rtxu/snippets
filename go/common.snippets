@@ -1,6 +1,8 @@
 
 snippet actor
 type $1 struct {
+	mQuit	chan bool
+	mTicker *time.Ticker
 }
 
 func New$1(intervalInMs int) *$1 {
