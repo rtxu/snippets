@@ -36,3 +36,67 @@ func (this *$1) workflow() {
 }
 endsnippet
 
+snippet perr
+if err != nil {
+	return errors.New(fmt.Sprintf("$1"))
+}
+endsnippet
+
+snippet testsuite
+type $1TestSuite struct {
+	suite.Suite
+}
+
+func (suite *$1TestSuite) SetupSuite() {
+}
+
+func (suite *$1TestSuite) TearDownSuite() {
+}
+
+func (suite *$1TestSuite) SetupTest() {
+}
+
+func (suite *$1TestSuite) TearDownTest() {
+}
+
+func (suite *$1TestSuite) Test$2() {
+}
+
+func Test$1TestSuite(t *testing.T) {
+	suite.Run(t, new($1TestSuite))
+}
+endsnippet
+
+snippet interface
+type I$1 interface {
+	${2:F1}
+	${3:F2}
+	${4:F3}
+	${5:F4}
+	${6:F5}
+}
+
+type $1 struct {
+}
+
+func New$1 *$1 {
+	return &$1{
+	}
+}
+
+func (this *$1) $2 {
+}
+
+func (this *$1) $3 {
+}
+
+func (this *$1) $4 {
+}
+
+func (this *$1) $5 {
+}
+
+func (this *$1) $6 {
+}
+
+endsnippet
