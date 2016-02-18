@@ -38,32 +38,32 @@ endsnippet
 
 snippet perr
 if err != nil {
-	return errors.New(fmt.Sprintf("$1"))
+	return fmt.Errorf("$1")
 }
 endsnippet
 
 snippet testsuite
-type $1TestSuite struct {
+type $1 struct {
 	suite.Suite
 }
 
-func (suite *$1TestSuite) SetupSuite() {
+func (suite *$1) SetupSuite() {
 }
 
-func (suite *$1TestSuite) TearDownSuite() {
+func (suite *$1) TearDownSuite() {
 }
 
-func (suite *$1TestSuite) SetupTest() {
+func (suite *$1) SetupTest() {
 }
 
-func (suite *$1TestSuite) TearDownTest() {
+func (suite *$1) TearDownTest() {
 }
 
-func (suite *$1TestSuite) Test$2() {
+func (suite *$1) Test$2() {
 }
 
-func Test$1TestSuite(t *testing.T) {
-	suite.Run(t, new($1TestSuite))
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1))
 }
 endsnippet
 
