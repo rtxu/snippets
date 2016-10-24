@@ -1,35 +1,34 @@
 
 snippet actor
 type $1 struct {
-	mQuit	chan bool
-	mTicker *time.Ticker
+    mQuit	chan bool
+    mTicker *time.Ticker
 }
 
-func New$1(intervalInMs int) *$1 {
-	return &$1{
-		mQuit:   make(chan bool),
-		mTicker: time.NewTicker(time.Duration(intervalInMs) * time.Millisecond),
-	}
+func New$1(interval time.Duration) *$1 {
+    return &$1{
+        mTicker: time.NewTicker(interval),
+    }
 }
 
 func (this *$1) Startup() {
-	go this.loop()
+    go this.loop()
+    this.mQuit = make(chan bool)
 }
 
 func (this *$1) Shutdown() {
-	this.mQuit <- true
+    this.mQuit <- true
 }
 
 func (this *$1) loop() {
-	for {
-		select {
-		case <-this.mQuit:
-			this.mTicker.Stop()
-			return
-		case <-this.mTicker.C:
-			this.workflow()
-		}
-	}
+    for {
+        select {
+            case <-this.mQuit:
+                return
+            case <-this.mTicker.C:
+                    this.workflow()
+        }
+    }
 }
 
 func (this *$1) workflow() {
@@ -38,13 +37,13 @@ endsnippet
 
 snippet perr
 if err != nil {
-	return fmt.Errorf("$1")
+    return fmt.Errorf("$1")
 }
 endsnippet
 
 snippet testsuite
 type $1 struct {
-	suite.Suite
+    suite.Suite
 }
 
 func (suite *$1) SetupSuite() {
@@ -63,25 +62,25 @@ func (suite *$1) Test$2() {
 }
 
 func Test$1(t *testing.T) {
-	suite.Run(t, new($1))
+    suite.Run(t, new($1))
 }
 endsnippet
 
 snippet interface
 type I$1 interface {
-	${2:F1}
-	${3:F2}
-	${4:F3}
-	${5:F4}
-	${6:F5}
+    ${2:F1}
+    ${3:F2}
+    ${4:F3}
+    ${5:F4}
+    ${6:F5}
 }
 
 type $1 struct {
 }
 
 func New$1 *$1 {
-	return &$1{
-	}
+    return &$1{
+    }
 }
 
 func (this *$1) $2 {
