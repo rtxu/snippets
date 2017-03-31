@@ -17,7 +17,10 @@ func (this *$1) Startup() {
 }
 
 func (this *$1) Shutdown() {
-    this.mQuit <- true
+    if this.mQuit != nil {
+        close(this.mQuit)
+        this.mQuit = nil
+    }
 }
 
 func (this *$1) loop() {
@@ -26,18 +29,12 @@ func (this *$1) loop() {
             case <-this.mQuit:
                 return
             case <-this.mTicker.C:
-                    this.workflow()
+                this.main()
         }
     }
 }
 
-func (this *$1) workflow() {
-}
-endsnippet
-
-snippet perr
-if err != nil {
-    return fmt.Errorf("$1")
+func (this *$1) main() {
 }
 endsnippet
 
@@ -58,12 +55,13 @@ func (suite *$1) SetupTest() {
 func (suite *$1) TearDownTest() {
 }
 
-func (suite *$1) Test$2() {
-}
-
 func Test$1(t *testing.T) {
     suite.Run(t, new($1))
 }
+
+func (suite *$1) Test$2() {
+}
+
 endsnippet
 
 snippet interface
