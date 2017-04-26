@@ -1,5 +1,7 @@
 #!/bin/bash
 
+readonly ABSPath=$(cd $(dirname $0); pwd)
+
 usage()
 {
     cat <<EOF
@@ -16,3 +18,9 @@ err()
     log "$@"
     exit 1
 }
+
+main() {
+    echo $ABSPath
+}
+
+main "$@"
