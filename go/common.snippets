@@ -97,3 +97,24 @@ func (this *$1) $6 {
 }
 
 endsnippet
+
+snippet deepcopy 
+func DeepCopy(dst, src interface{}) error {
+    var buf bytes.Buffer
+    enc := gob.NewEncoder(&buf)
+    dec := gob.NewDecoder(&buf)
+    if err := enc.Encode(src); err != nil {
+        return errors.Annotate(err, "gob.Encode")
+    }
+    return dec.Decode(dst)
+}
+endsnippet
+
+snippet critical
+func CriticalSection(locker sync.Locker, snippet func()) {
+    locker.Lock()
+    defer locker.Unlock()
+    snippet()
+}
+
+endsnippet
