@@ -1,3 +1,5 @@
+
+-- 查询数据库当前的锁等待情况
 SELECT r.trx_id waiting_trx_id, r.trx_mysql_thread_id waiting_thread, left(r.trx_query,20) waiting_query, concat(concat(lw.lock_type, ' '), lw.lock_mode) waiting_for_lock, 
 b.trx_id blocking_trx_id, b.trx_mysql_thread_id blocking_thread, left(b.trx_query,20) blocking_query, concat(concat(lb.lock_type, ' '), lb.lock_mode) blocking_lock 
 FROM information_schema.innodb_lock_waits w
