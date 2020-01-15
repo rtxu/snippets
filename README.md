@@ -1,2 +1,1 @@
-# UltiSnips
-Personal UltiSnips
+收集一些常用 code snippets

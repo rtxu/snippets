@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# enable when debug
+#set -x
+
 # quit when any error happens
 set -e
 # quit when use undefined variable
