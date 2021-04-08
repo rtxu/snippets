@@ -21,12 +21,12 @@ EOF
 
 log()
 {
-    echo "[$(date +'%F %T')] $@"
+    echo "[$(date +'%F %T')] [${BASH_SOURCE[1]}:${BASH_LINENO[0]}] $@"
 }
 
 err()
 {
-    log "$@"
+    echo "[$(date +'%F %T')] [${BASH_SOURCE[1]}:${BASH_LINENO[0]}] $@"
     exit 1
 }
 
